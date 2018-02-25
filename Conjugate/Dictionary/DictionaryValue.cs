@@ -21,9 +21,10 @@ namespace Conjugate.Dictionary {
          * Serialization
          */
         public DictionaryValue(SerializationInfo info, StreamingContext context) {
-            EnglishWord = (string)info.GetValue("EnglishWord", typeof(string));
-            Word = (string)info.GetValue("Word", typeof(string));
-            Definition = (string)info.GetValue("Definition", typeof(string));
+
+            EnglishWord = info.GetString("EnglishWord");
+            Word = info.GetString("Word");
+            Definition = info.GetString("Definition");
         }
         public void GetSerializationData(SerializationInfo info, StreamingContext context) {
             info.AddValue("EnglishWord", EnglishWord);

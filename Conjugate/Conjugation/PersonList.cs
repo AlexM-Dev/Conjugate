@@ -1,4 +1,6 @@
-﻿namespace Conjugate.Conjugation {
+﻿using System.Runtime.Serialization;
+
+namespace Conjugate.Conjugation {
     class PersonList {
         public string Je { get; set; }
         public string Tu { get; set; }
@@ -24,6 +26,25 @@
                 "Nous: " + Nous + "\n" +
                 "Vous: " + Vous + "\n" +
                 "Ils: " + Ils;
+        }
+        /*
+        * Serialization
+        */
+        public PersonList(SerializationInfo info, StreamingContext context) {
+            Je = info.GetString("Je");
+            Tu = info.GetString("Tu");
+            Il = info.GetString("Il");
+            Nous = info.GetString("Nous");
+            Vous = info.GetString("Vous");
+            Ils = info.GetString("Ils");
+        }
+        public void GetSerializationData(SerializationInfo info, StreamingContext context) {
+            info.AddValue("Je", Je);
+            info.AddValue("Tu", Tu);
+            info.AddValue("Il", Il);
+            info.AddValue("Nous", Nous);
+            info.AddValue("Vous", Vous);
+            info.AddValue("Ils", Ils);
         }
     }
 }
