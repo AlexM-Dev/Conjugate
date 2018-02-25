@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Conjugate.Serialization {
-    class DictionaryValue {
-        public static void ToFile(List<Dictionary.DictionaryValue> value, string file) {
-            using (Stream stream = File.Open(file + ".dict", FileMode.Create)) {
+    class ObjectSerializer {
+        public static void ToFile<T>(T value, string file) {
+            using (Stream stream = File.Open(file, FileMode.Create)) {
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 formatter.Serialize(stream, value);
@@ -17,12 +17,12 @@ namespace Conjugate.Serialization {
             }
         }
 
-        public static List<Dictionary.DictionaryValue> FromFile(string file) {
-            List<Dictionary.DictionaryValue> value = null;
-            
-            using (Stream stream = File.Open(file + ".dict", FileMode.Open)) {
+        public static T FromFile<T>(string file) {
+            T value;
+
+            using (Stream stream = File.Open(file, FileMode.Open)) {
                 BinaryFormatter formatter = new BinaryFormatter();
-                value = (List<Dictionary.DictionaryValue>)formatter.Deserialize(stream);
+                value = (T)formatter.Deserialize(stream);
 
                 stream.Close();
             }

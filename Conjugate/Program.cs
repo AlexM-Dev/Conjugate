@@ -1,5 +1,6 @@
 ﻿using Conjugate.Dictionary;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace Conjugate {
@@ -14,6 +15,7 @@ namespace Conjugate {
             // Create a wordreference instance.
             WordReference wordReference = new WordReference(client);
             var t = wordReference.GetENFR_Translations("eat");
+            Serialization.ObjectSerializer.ToFile(t, "eat.dict2");
 
             // Create a conjugationfr instance.
             var fr = new Conjugation.ConjugationFR(client);
