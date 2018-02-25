@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Conjugate.Conjugation {
     class ConjugationFR {
@@ -12,11 +8,13 @@ namespace Conjugate.Conjugation {
             this.client = client;
         }
         public List<Tense> GetConjugations(string verb) {
-            string source = client.GetAsync("http://www.conjugation-fr.com" +
-                "/conjugate.php?verb=" + verb).Result.Content.
-                ReadAsStringAsync().Result;
+            string stripVerb = EncodingUtilities.RemoveDiacritics(verb);
+            var bytes = client.GetAsync("http://www.conjugation-fr.com" +
+                "/conjugate.php?verb=" + stripVerb).Result.Content.
+                ReadAsByteArrayAsync().Result;
 
-            return TenseReader.Get(source);
+            return TenseReader.Get(EncodingUtilities.
+                ISO_8859_1.GetString(bytes));
         }
     }
 }

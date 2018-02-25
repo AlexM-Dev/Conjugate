@@ -1,11 +1,6 @@
 ﻿using Conjugate.Dictionary;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Conjugate {
     class Program {
@@ -38,13 +33,9 @@ namespace Conjugate {
                 Console.WriteLine(indent + "Nous: " + pTense.Person.Nous);
                 Console.WriteLine(indent + "Vous: " + pTense.Person.Vous);
                 Console.WriteLine(indent + "Ils: " + pTense.Person.Ils);
-                Console.ReadKey();
             }
 
-
-
             Console.ReadKey();
-
         }
     }
 }

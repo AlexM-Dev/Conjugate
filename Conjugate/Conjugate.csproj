@@ -47,6 +47,7 @@
     <Compile Include="Conjugation\Tense.cs" />
     <Compile Include="Conjugation\PersonList.cs" />
     <Compile Include="Conjugation\TenseReader.cs" />
+    <Compile Include="Conjugation\EncodingUtilities.cs" />
     <Compile Include="Dictionary\DictionaryValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
