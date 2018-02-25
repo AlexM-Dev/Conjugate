@@ -11,8 +11,7 @@ namespace Conjugate.Dictionary {
             this.client = client;
         }
 
-        public Tuple<string, List<DictionaryValue>> GetENFR_Translations(string verb) {
-
+        public List<DictionaryValue> GetENFR_Translations(string verb) {
             string wordReferenceSource = client.GetAsync(
                 "http://www.wordreference.com/enfr/" + verb).Result
                 .Content.ReadAsStringAsync().Result;
@@ -47,10 +46,10 @@ namespace Conjugate.Dictionary {
                 definition = defCollection[0].Groups[1].Value;
                 string to = HttpUtility.UrlDecode(toCollection[0].Groups[1].Value);
                 
-                conjList.Add(new DictionaryValue(to, definition));
+                conjList.Add(new DictionaryValue(verb, to, definition));
             }
 
-            return new Tuple<string, List<DictionaryValue>>(verb, conjList);
+            return conjList;
         }
     }
 }

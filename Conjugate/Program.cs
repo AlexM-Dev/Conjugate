@@ -21,8 +21,8 @@ namespace Conjugate {
             // Write the translation(s) down.
             string sep = "\n => ";
             string indent = "    => ";
-            Console.Write(t.Item1 + sep);
-            foreach (DictionaryValue value in t.Item2) {
+            Console.Write(t.Count > 0 ? t[0].EnglishWord : "CAN'T FIND WORD" + sep);
+            foreach (DictionaryValue value in t) {
                 Console.WriteLine(value.ToString());
 
                 var pTense = fr.GetConjugations(value.Word)[0];
