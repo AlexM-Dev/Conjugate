@@ -21,7 +21,6 @@ namespace Conjugate.Dictionary {
          * Serialization
          */
         public DictionaryValue(SerializationInfo info, StreamingContext context) {
-
             EnglishWord = info.GetString("EnglishWord");
             Word = info.GetString("Word");
             Definition = info.GetString("Definition");

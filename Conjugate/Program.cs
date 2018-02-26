@@ -15,7 +15,6 @@ namespace Conjugate {
             // Create a wordreference instance.
             WordReference wordReference = new WordReference(client);
             var t = wordReference.GetENFR_Translations("eat");
-            Serialization.ObjectSerializer.ToFile(t, "eat.dict2");
 
             // Create a conjugationfr instance.
             var fr = new Conjugation.ConjugationFR(client);
@@ -23,11 +22,14 @@ namespace Conjugate {
             // Write the translation(s) down.
             string sep = "\n => ";
             string indent = "    => ";
-            Console.Write(t.Count > 0 ? t[0].EnglishWord : "CAN'T FIND WORD" + sep);
             foreach (DictionaryValue value in t) {
                 Console.WriteLine(value.ToString());
 
-                var pTense = fr.GetConjugations(value.Word)[0];
+                List<Conjugation.Tense> conjugations = fr.GetConjugations(value.Word);
+                ObjectSerializer.ToFile(conjugations, value.Word + ".conj");
+
+                var pTense = conjugations[0]; // Gets the present tense.
+
                 Console.WriteLine(indent + "Tense: " + pTense.Name);
                 Console.WriteLine(indent + "Je: " + pTense.Person.Je);
                 Console.WriteLine(indent + "Tu: " + pTense.Person.Tu);

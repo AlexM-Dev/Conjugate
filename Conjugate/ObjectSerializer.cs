@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Conjugate.Serialization {
+namespace Conjugate {
     class ObjectSerializer {
         public static void ToFile<T>(T value, string file) {
             using (Stream stream = File.Open(file, FileMode.Create)) {

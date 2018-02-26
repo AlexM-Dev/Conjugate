@@ -1,6 +1,8 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Conjugate.Conjugation {
+    [Serializable()]
     class PersonList {
         public string Je { get; set; }
         public string Tu { get; set; }
