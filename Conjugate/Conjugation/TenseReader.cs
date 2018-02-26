@@ -12,11 +12,19 @@ namespace Conjugate.Conjugation {
             foreach (Match m in matches) {
                 Tense tense = new Tense();
 
+                // Get the content.
                 string content = m.Groups[1].Value.Trim('\n');
 
+                // Get name of the tense being matched.
                 string nameRegex = "<span class=\"arial-13-bleu\">(.*?)<\\/span>";
                 tense.Name = Regex.Match(content, nameRegex).Groups[1].Value;
 
+                // Get infinitive.
+                string fromRegex = "<font color=\"0078FF\">(.*?)<\\/font>";
+                string from = Regex.Match(source, fromRegex).Groups[1].Value.ToLower();
+                tense.Infinitive = from;
+
+                // Get the list of conjugated verbs.
                 string personsRegex = "(.*?)<span class=\"conjuguaison\">(.*?)<\\/span>";
 
                 PersonList personList = new PersonList();
